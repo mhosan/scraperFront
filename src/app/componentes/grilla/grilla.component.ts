@@ -23,10 +23,10 @@ export class GrillaComponent implements OnInit {
 
   ngOnInit(): void {
     this.columnDefs = [
-      { headerName: 'Supermercado', field: 'supermercado', sortable: true, filter: true },
-      { headerName: 'Fecha', field: 'fecha', sortable: true, filter: true },
-      { headerName: 'Descrip', field: 'descrip', sortable: true, filter: true },
-      { headerName: 'Precio', field: 'precio', sortable: true, filter: true }
+      { headerName: 'Superm.', field: 'supermercado', width: 100, sortable: true, filter: true, headerClass: 'miClase' },
+      { headerName: 'Fecha', field: 'fecha', sortable: true, filter: true, headerClass: 'miClase' },
+      { headerName: 'Descrip.', field: 'descrip', width: 450, sortable: true, filter: true, headerClass: 'miClase' },
+      { headerName: 'Precio', field: 'precio', width: 100, sortable: true, filter: true,headerClass: 'miClase' }
     ];
     this.datosService.getDatos()
       .subscribe(
@@ -38,7 +38,15 @@ export class GrillaComponent implements OnInit {
     this.rowSelection = 'single';
 
   }
-
+  onSelectionChanged(parametro: any) {
+    // let selectedNodes = this.gridApi.getSelectedNodes();
+    // let selectedData = selectedNodes.map(node => node.data);
+    // alert(`Nodo seleccionado:\n${JSON.stringify(selectedData)}`); 
+    let selectedRows = this.gridApi.getSelectedRows();
+    let seleccion = selectedRows[0].id;
+    //alert(seleccion);
+    //this.destino = seleccion.toString();
+  }
   /* onGridReady(params: { api: any; columnApi: any; }) {
     console.log('onGridReady');
     this.gridApi = params.api;
