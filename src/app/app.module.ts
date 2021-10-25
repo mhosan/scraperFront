@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { GrillaComponent } from './componentes/grilla/grilla.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { GrillaComponent } from './componentes/grilla/grilla.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AgGridModule.withComponents([])
   ],
   providers: [],
