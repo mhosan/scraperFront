@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AgGridColumn } from 'ag-grid-angular';
 import { DatosService } from '../../servicios/datos.service';
+//import 'rxjs/add/operator/catch';
 
 @Component({
   selector: 'app-grilla',
@@ -13,12 +14,8 @@ export class GrillaComponent implements OnInit {
   public rowData: any;
   public rowSelection: any;
   public columnDefs: any;
-  /*rowData = [
-    {make: 'Toyota', model: 'Celica', price: 35000},
-    {make: 'Ford', model: 'Mondeo', price: 32000},
-    {make: 'Porsche', model: 'Boxter', price: 72000}
-  ];*/
-
+  public datosTotales: number = 0;
+ 
   constructor(private datosService: DatosService) { }
 
   ngOnInit(): void {
@@ -31,9 +28,14 @@ export class GrillaComponent implements OnInit {
     this.datosService.getDatos()
       .subscribe(
         (data) => {
-          console.log(data);
+          const datos: string | any[][] = data;
+          this.datosTotales=datos.length;
           this.rowData = data;
         }
+        //,
+        //(error) => {
+        //  console.log(`Error: ${error}`);
+        //}
       );
     this.rowSelection = 'single';
 
