@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
 export class DatosService {
 
   //private url = 'https://jsonplaceholder.typicode.com/users';
-  private url = 'http://localhost:3000/api/precios';
+  //private url = 'http://localhost:3000/api/precios';
+  private url = 'https://precioscraping.herokuapp.com/api/precios';
 
   constructor(private http: HttpClient) { }
 
