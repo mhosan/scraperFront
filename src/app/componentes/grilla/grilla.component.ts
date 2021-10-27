@@ -15,7 +15,7 @@ export class GrillaComponent implements OnInit {
   public rowSelection: any;
   public columnDefs: any;
   public datosTotales: number = 0;
- 
+
   constructor(private datosService: DatosService) { }
 
   ngOnInit(): void {
@@ -23,14 +23,23 @@ export class GrillaComponent implements OnInit {
       { headerName: 'Superm.', field: 'supermercado', width: 100, sortable: true, filter: true, headerClass: 'miClase' },
       { headerName: 'Fecha', field: 'fecha', sortable: true, filter: true, headerClass: 'miClase' },
       { headerName: 'Descrip.', field: 'descrip', width: 450, sortable: true, filter: true, headerClass: 'miClase' },
-      { headerName: 'Precio', field: 'precio', width: 100, sortable: true, filter: true,headerClass: 'miClase' }
+      { headerName: 'Precio', field: 'precio', width: 100, sortable: true, filter: true, headerClass: 'miClase' }
     ];
     this.datosService.getDatos()
       .subscribe(
         (data) => {
           const datos: string | any[][] = data;
-          this.datosTotales=datos.length;
-          this.rowData = data;
+          this.datosTotales = datos.length;
+          const algo = JSON.stringify(datos, (key, value)=>{
+            if (key == "fecha"){
+              const f = new Date(value);
+              return f.toLocaleDateString();
+            } else {
+              return value;
+            }
+          });
+          const losDatos = JSON.parse(algo);
+          this.rowData = losDatos;
         }
         //,
         //(error) => {
