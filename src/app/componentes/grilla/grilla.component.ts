@@ -21,7 +21,7 @@ export class GrillaComponent implements OnInit {
   ngOnInit(): void {
     this.columnDefs = [
       { headerName: 'Superm.', field: 'supermercado', width: 100, sortable: true, filter: true, headerClass: 'miClase' },
-      { headerName: 'Fecha', field: 'fecha', sortable: true, filter: true, headerClass: 'miClase' },
+      { headerName: 'Fecha', field: 'fecha', width: 50, sortable: true, filter: true, headerClass: 'miClase' },
       { headerName: 'Descrip.', field: 'descrip', width: 450, sortable: true, filter: true, headerClass: 'miClase' },
       { headerName: 'Precio', field: 'precio', width: 100, sortable: true, filter: true, headerClass: 'miClase' }
     ];
