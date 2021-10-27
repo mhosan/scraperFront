@@ -1,10 +1,31 @@
-<ag-grid-angular
-    style="width:875px; height: 500px;"
-    class="ag-theme-fresh"
-    [rowData]="rowData"
-    [columnDefs]="columnDefs">
-    
-</ag-grid-angular>
-<div>
-    <h4>Total de datos: {{datosTotales}} productos</h4>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <ag-grid-angular style="width:875px; height: 500px;" class="ag-theme-fresh" [rowData]="rowData"
+                [columnDefs]="columnDefs">
+            </ag-grid-angular>
+        </div>
+        <div class="col">
+            <div>
+                <h4>Total: {{datosTotales}} productos</h4>
+            </div>
+            <div class="card" style="width: 10rem;">
+                <!-- <img src="..." class="card-img-top" alt="..."> -->
+                <div class="card-body">
+                    <h5 class="card-title">Productos scrapeados</h5>
+                    <ul class="card-text">
+                        <li>Leche</li>
+                        <li>Yerba</li>
+                        <li>Azucar</li>
+                        <li>Galletitas</li>
+                        <li>Gaseosas</li>
+                        <li>Arroz</li>
+                        <li>Shampoo</li>
+                        <li>Pollo</li>
+                    </ul>
+                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
