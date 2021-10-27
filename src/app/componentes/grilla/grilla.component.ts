@@ -11,6 +11,7 @@ import { DatosService } from '../../servicios/datos.service';
 export class GrillaComponent implements OnInit {
   public gridApi: any;
   public gridColumnApi: any;
+  public gridOptions: any;
   public rowData: any;
   public rowSelection: any;
   public columnDefs: any;
@@ -20,18 +21,20 @@ export class GrillaComponent implements OnInit {
 
   ngOnInit(): void {
     this.columnDefs = [
-      { headerName: 'Superm.', field: 'supermercado', width: 100, sortable: true, filter: true, headerClass: 'miClase' },
-      { headerName: 'Fecha', field: 'fecha', width: 50, sortable: true, filter: true, headerClass: 'miClase' },
+      { headerName: 'Sup.', field: 'supermercado', width: 100, sortable: true, filter: true, headerClass: 'miClase',
+    checkboxSelection: true},
+      { headerName: 'Fecha', field: 'fecha', width: 110, sortable: true, filter: true, headerClass: 'miClase' },
       { headerName: 'Descrip.', field: 'descrip', width: 450, sortable: true, filter: true, headerClass: 'miClase' },
       { headerName: 'Precio', field: 'precio', width: 100, sortable: true, filter: true, headerClass: 'miClase' }
     ];
+
     this.datosService.getDatos()
       .subscribe(
         (data) => {
           const datos: string | any[][] = data;
           this.datosTotales = datos.length;
-          const algo = JSON.stringify(datos, (key, value)=>{
-            if (key == "fecha"){
+          const algo = JSON.stringify(datos, (key, value) => {
+            if (key == "fecha") {
               const f = new Date(value);
               return f.toLocaleDateString();
             } else {
@@ -41,33 +44,30 @@ export class GrillaComponent implements OnInit {
           const losDatos = JSON.parse(algo);
           this.rowData = losDatos;
         }
-        //,
-        //(error) => {
-        //  console.log(`Error: ${error}`);
-        //}
       );
     this.rowSelection = 'single';
 
   }
-  onSelectionChanged(parametro: any) {
-    // let selectedNodes = this.gridApi.getSelectedNodes();
-    // let selectedData = selectedNodes.map(node => node.data);
-    // alert(`Nodo seleccionado:\n${JSON.stringify(selectedData)}`); 
-    let selectedRows = this.gridApi.getSelectedRows();
-    let seleccion = selectedRows[0].id;
-    //alert(seleccion);
-    //this.destino = seleccion.toString();
+  filtroProducto(producto: string) {
+    //const filtro = this.gridOptions.api.getFilterInstance(producto);
+    console.log('Aca va el filtro');
   }
-  /* onGridReady(params: { api: any; columnApi: any; }) {
-    console.log('onGridReady');
+  
+  onSelectionChanged(parametro: any) {
+    //let selectedNodes = this.gridApi.getSelectedNodes();
+    //let selectedData = selectedNodes.map(node => node.data);
+    // alert(`Nodo seleccionado:\n${JSON.stringify(selectedData)}`); 
+    /*let selectedRows = this.gridApi.getSelectedRows();
+    let seleccion = selectedRows[0].id;
+    console.log(seleccion);
+    const destino = seleccion.toString();*/
+  }
+  onGridReady(params: { api: any; columnApi: any; }) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    this.datosService.getDatos()
-      .subscribe(
-        (data) => {
-          console.log(data);
-          //this.rowData = data[0];
-        }
-      );
-  } */
+    this.gridOptions = {
+      columnDefs: this.columnDefs,
+      rowData: this.rowData,
+    }
+  }
 }
