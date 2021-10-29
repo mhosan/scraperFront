@@ -16,4 +16,8 @@ export class DatosService {
   getDatos(): Observable<any> {
     return this.http.get(this.url);
   }
+
+  getTotal(): Observable<any> {
+    return this.http.get(this.url + '/total');
+  }
 }

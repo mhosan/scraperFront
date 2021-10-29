@@ -21,8 +21,10 @@ export class GrillaComponent implements OnInit {
 
   ngOnInit(): void {
     this.columnDefs = [
-      { headerName: 'Sup.', field: 'supermercado', width: 100, sortable: true, filter: true, headerClass: 'miClase',
-    checkboxSelection: true},
+      {
+        headerName: 'Sup.', field: 'supermercado', width: 100, sortable: true, filter: true, headerClass: 'miClase',
+        checkboxSelection: true
+      },
       { headerName: 'Fecha', field: 'fecha', width: 110, sortable: true, filter: true, headerClass: 'miClase' },
       { headerName: 'Descrip.', field: 'descrip', width: 450, sortable: true, filter: true, headerClass: 'miClase' },
       { headerName: 'Precio', field: 'precio', width: 100, sortable: true, filter: true, headerClass: 'miClase' }
@@ -46,13 +48,19 @@ export class GrillaComponent implements OnInit {
         }
       );
     this.rowSelection = 'single';
-
+    const total = this.datosService.getTotal()
+      .subscribe(
+        (data) => { 
+          const parseados = JSON.stringify(data);
+          console.log(`El total: ${parseados}`)
+        })
   }
+
   filtroProducto(producto: string) {
     //const filtro = this.gridOptions.api.getFilterInstance(producto);
     console.log('Aca va el filtro');
   }
-  
+
   onSelectionChanged(parametro: any) {
     //let selectedNodes = this.gridApi.getSelectedNodes();
     //let selectedData = selectedNodes.map(node => node.data);
