@@ -20,4 +20,8 @@ export class DatosService {
   getTotal(): Observable<any> {
     return this.http.get(this.url + '/total');
   }
+
+  getProducto(producto: string): Observable<any> {
+    return this.http.get(this.url + '/filtrar/' + producto );
+  }
 }

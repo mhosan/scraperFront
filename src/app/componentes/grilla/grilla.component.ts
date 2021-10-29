@@ -30,7 +30,35 @@ export class GrillaComponent implements OnInit {
       { headerName: 'Descrip.', field: 'descrip', width: 450, sortable: true, filter: true, headerClass: 'miClase' },
       { headerName: 'Precio', field: 'precio', width: 100, sortable: true, filter: true, headerClass: 'miClase' }
     ];
+    this.rowSelection = 'single';
+  }
 
+  filtroProducto(producto: string) {
+    this.datosService.getProducto(producto)
+      .subscribe(
+        (data) => {
+          //this.rowData = data;
+          this.gridApi.setRowData(this.rowData);
+        })
+  }
+
+  onSelectionChanged(parametro: any) {
+    //let selectedNodes = this.gridApi.getSelectedNodes();
+    //let selectedData = selectedNodes.map(node => node.data);
+    // alert(`Nodo seleccionado:\n${JSON.stringify(selectedData)}`); 
+    let selectedRows = this.gridApi.getSelectedRows();
+    let seleccion = selectedRows[0].descrip;
+    console.log(seleccion);
+  }
+
+  onGridReady(params: { api: any; columnApi: any; }) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.gridOptions = {
+      columnDefs: this.columnDefs,
+      rowData: this.rowData,
+    }
+    //this.gridApi.setRowData(this.rowData);
     this.datosService.getDatos()
       .subscribe(
         (data) => {
@@ -48,33 +76,11 @@ export class GrillaComponent implements OnInit {
           this.rowData = losDatos;
         }
       );
-    this.rowSelection = 'single';
     const total = this.datosService.getTotal()
       .subscribe(
-        (data) => { 
+        (data) => {
           this.datosTotales = data.data;
         })
-  }
 
-  filtroProducto(producto: string) {
-    console.log(`Filtrar por ${producto}`);
-  }
-
-  onSelectionChanged(parametro: any) {
-    //let selectedNodes = this.gridApi.getSelectedNodes();
-    //let selectedData = selectedNodes.map(node => node.data);
-    // alert(`Nodo seleccionado:\n${JSON.stringify(selectedData)}`); 
-    /*let selectedRows = this.gridApi.getSelectedRows();
-    let seleccion = selectedRows[0].id;
-    console.log(seleccion);
-    const destino = seleccion.toString();*/
-  }
-  onGridReady(params: { api: any; columnApi: any; }) {
-    this.gridApi = params.api;
-    this.gridColumnApi = params.columnApi;
-    this.gridOptions = {
-      columnDefs: this.columnDefs,
-      rowData: this.rowData,
-    }
   }
 }

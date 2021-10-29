@@ -1,8 +1,13 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <ag-grid-angular style="width:875px; height: 500px;" class="ag-theme-fresh" [rowData]="rowData"
-                [columnDefs]="columnDefs">
+            <ag-grid-angular style="width:875px; height: 500px;"
+             class="ag-theme-fresh"
+             [rowData]="rowData"
+             [columnDefs]="columnDefs"
+             [rowSelection]="rowSelection"
+             (selectionChanged)="onSelectionChanged($event)"
+             (gridReady)="onGridReady($event)">
             </ag-grid-angular>
         </div>
         <div class="col">
@@ -14,14 +19,22 @@
                 <div class="card-body">
                     <h5 class="card-title">Productos scrapeados</h5>
                     <ul class="card-text">
-                        <li><button class="btn btn-secondary btn-sm" (click)="filtroProducto('Leche')">Leche</button></li>
-                        <li><button class="btn btn-secondary btn-sm mt-1" (click)="filtroProducto('Yerba')">Yerba</button></li>
-                        <li><button class="btn btn-secondary btn-sm mt-1" (click)="filtroProducto('Azucar')">Azucar</button></li>
-                        <li><button class="btn btn-secondary btn-sm mt-1" (click)="filtroProducto('Galletitas')">Galletitas</button></li>
-                        <li><button class="btn btn-secondary btn-sm mt-1" (click)="filtroProducto('Gaseosas')">Gaseosas</button></li>
-                        <li><button class="btn btn-secondary btn-sm mt-1" (click)="filtroProducto('Arroz')">Arroz</button></li>
-                        <li><button class="btn btn-secondary btn-sm mt-1" (click)="filtroProducto('Shampoo')">Shampoo</button></li>
-                        <li><button class="btn btn-secondary btn-sm mt-1" (click)="filtroProducto('Pollo')">Pollo</button></li>
+                        <li><button class="btn btn-secondary btn-sm" (click)="filtroProducto('Leche')">Leche</button>
+                        </li>
+                        <li><button class="btn btn-secondary btn-sm mt-1"
+                                (click)="filtroProducto('Yerba')">Yerba</button></li>
+                        <li><button class="btn btn-secondary btn-sm mt-1"
+                                (click)="filtroProducto('Azucar')">Azucar</button></li>
+                        <li><button class="btn btn-secondary btn-sm mt-1"
+                                (click)="filtroProducto('Galletitas')">Galletitas</button></li>
+                        <li><button class="btn btn-secondary btn-sm mt-1"
+                                (click)="filtroProducto('Gaseosas')">Gaseosas</button></li>
+                        <li><button class="btn btn-secondary btn-sm mt-1"
+                                (click)="filtroProducto('Arroz')">Arroz</button></li>
+                        <li><button class="btn btn-secondary btn-sm mt-1"
+                                (click)="filtroProducto('Shampoo')">Shampoo</button></li>
+                        <li><button class="btn btn-secondary btn-sm mt-1"
+                                (click)="filtroProducto('Pollo')">Pollo</button></li>
                     </ul>
                     <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                 </div>
