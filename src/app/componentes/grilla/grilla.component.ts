@@ -15,6 +15,7 @@ export class GrillaComponent implements OnInit {
   public rowData: any;
   public rowSelection: any;
   public columnDefs: any;
+  public datosLeidos: number = 0;
   public datosTotales: number = 0;
 
   constructor(private datosService: DatosService) { }
@@ -34,7 +35,7 @@ export class GrillaComponent implements OnInit {
       .subscribe(
         (data) => {
           const datos: string | any[][] = data;
-          this.datosTotales = datos.length;
+          this.datosLeidos = datos.length;
           const algo = JSON.stringify(datos, (key, value) => {
             if (key == "fecha") {
               const f = new Date(value);
@@ -51,14 +52,12 @@ export class GrillaComponent implements OnInit {
     const total = this.datosService.getTotal()
       .subscribe(
         (data) => { 
-          const parseados = JSON.stringify(data);
-          console.log(`El total: ${parseados}`)
+          this.datosTotales = data.data;
         })
   }
 
   filtroProducto(producto: string) {
-    //const filtro = this.gridOptions.api.getFilterInstance(producto);
-    console.log('Aca va el filtro');
+    console.log(`Filtrar por ${producto}`);
   }
 
   onSelectionChanged(parametro: any) {
