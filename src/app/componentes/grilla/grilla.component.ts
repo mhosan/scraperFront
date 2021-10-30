@@ -17,16 +17,14 @@ export class GrillaComponent implements OnInit {
   public columnDefs: any;
   public datosLeidos: number = 0;
   public datosTotales: number = 0;
+  public losDatosConFechaConvertida: any;
 
   constructor(private datosService: DatosService) { }
 
   ngOnInit(): void {
     this.columnDefs = [
-      {
-        headerName: 'Sup.', field: 'supermercado', width: 100, sortable: true, filter: true, headerClass: 'miClase',
-        checkboxSelection: true
-      },
-      { headerName: 'Fecha', field: 'fecha', width: 110, sortable: true, filter: true, headerClass: 'miClase' },
+      { headerName: 'Sup.', field: 'supermercado', width: 100, sortable: true, filter: true, headerClass: 'miClase'},
+      { headerName: 'Fecha', field: 'fecha', width: 120, sortable: true, filter: true, headerClass: 'miClase' },
       { headerName: 'Descrip.', field: 'descrip', width: 450, sortable: true, filter: true, headerClass: 'miClase' },
       { headerName: 'Precio', field: 'precio', width: 100, sortable: true, filter: true, headerClass: 'miClase' }
     ];
@@ -37,7 +35,9 @@ export class GrillaComponent implements OnInit {
     this.datosService.getProducto(producto)
       .subscribe(
         (data) => {
-          this.gridApi.setRowData(this.rowData);
+          this.convertirFecha(data.data);
+          this.rowData = this.losDatosConFechaConvertida;
+          this.datosLeidos = data.data.length;
         })
   }
 
@@ -48,6 +48,7 @@ export class GrillaComponent implements OnInit {
     let selectedRows = this.gridApi.getSelectedRows();
     let seleccion = selectedRows[0].descrip;
     console.log(seleccion);
+    this.filtroProducto(seleccion);
   }
 
   onGridReady(params: { api: any; columnApi: any; }) {
@@ -63,16 +64,8 @@ export class GrillaComponent implements OnInit {
         (data) => {
           const datos: string | any[][] = data;
           this.datosLeidos = datos.length;
-          const algo = JSON.stringify(datos, (key, value) => {
-            if (key == "fecha") {
-              const f = new Date(value);
-              return f.toLocaleDateString();
-            } else {
-              return value;
-            }
-          });
-          const losDatos = JSON.parse(algo);
-          this.rowData = losDatos;
+          this.convertirFecha(datos);
+          this.rowData = this.losDatosConFechaConvertida;
         }
       );
     const total = this.datosService.getTotal()
@@ -81,5 +74,17 @@ export class GrillaComponent implements OnInit {
           this.datosTotales = data.data;
         })
 
+  }
+
+  convertirFecha(data: any){
+    const algo = JSON.stringify(data, (key, value) => {
+      if (key == "fecha") {
+        const f = new Date(value);
+        return f.toLocaleDateString();
+      } else {
+        return value;
+      }
+    });
+    this.losDatosConFechaConvertida = JSON.parse(algo);
   }
 }
