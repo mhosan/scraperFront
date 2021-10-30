@@ -37,7 +37,6 @@ export class GrillaComponent implements OnInit {
     this.datosService.getProducto(producto)
       .subscribe(
         (data) => {
-          //this.rowData = data;
           this.gridApi.setRowData(this.rowData);
         })
   }
