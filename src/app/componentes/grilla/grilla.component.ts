@@ -48,6 +48,7 @@ export class GrillaComponent implements OnInit {
     let selectedRows = this.gridApi.getSelectedRows();
     let seleccion = selectedRows[0].descrip;
     console.log(seleccion);
+    this.filtroProducto(seleccion);
   }
 
   onGridReady(params: { api: any; columnApi: any; }) {
