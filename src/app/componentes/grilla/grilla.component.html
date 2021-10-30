@@ -1,8 +1,11 @@
-<div class="container">
-    <div class="row">
+<div class="container-fluid">
+    <div class="row mt-2">
+        <div class="col-1 mt-4">
+            <button class="btn btn-secondary btn-sm" (click)="home()">Home</button>
+        </div>
         <div class="col">
-            <ag-grid-angular style="width:875px; height: 500px;"
-             class="ag-theme-fresh"
+            <ag-grid-angular style="width:920px; height: 600px;"
+             class="ag-theme-material"
              [rowData]="rowData"
              [columnDefs]="columnDefs"
              [rowSelection]="rowSelection"
@@ -10,14 +13,14 @@
              (gridReady)="onGridReady($event)">
             </ag-grid-angular>
         </div>
-        <div class="col">
+        <div class="col mt-3">
             <div>
                 <h4>{{datosLeidos}} productos sobre un total de {{datosTotales}}</h4>
             </div>
             <div class="card" style="width: 10rem;">
                 <!-- <img src="..." class="card-img-top" alt="..."> -->
                 <div class="card-body">
-                    <h5 class="card-title">Productos scrapeados</h5>
+                    <h5 class="card-title">Filtrar por producto</h5>
                     <ul class="card-text">
                         <li><button class="btn btn-secondary btn-sm" (click)="filtroProducto('Leche')">Leche</button>
                         </li>

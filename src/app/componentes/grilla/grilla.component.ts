@@ -23,10 +23,10 @@ export class GrillaComponent implements OnInit {
 
   ngOnInit(): void {
     this.columnDefs = [
-      { headerName: 'Sup.', field: 'supermercado', width: 100, sortable: true, filter: true, headerClass: 'miClase'},
+      { headerName: 'Superm.', field: 'supermercado', width: 130, sortable: true, filter: true, headerClass: 'miClase'},
       { headerName: 'Fecha', field: 'fecha', width: 120, sortable: true, filter: true, headerClass: 'miClase' },
-      { headerName: 'Descrip.', field: 'descrip', width: 450, sortable: true, filter: true, headerClass: 'miClase' },
-      { headerName: 'Precio', field: 'precio', width: 100, sortable: true, filter: true, headerClass: 'miClase' }
+      { headerName: 'Descrip.', field: 'descrip', width: 530, sortable: true, filter: true, headerClass: 'miClase' },
+      { headerName: 'Precio', field: 'precio', width: 110, sortable: true, headerClass: 'miClase' }
     ];
     this.rowSelection = 'single';
   }
@@ -86,5 +86,22 @@ export class GrillaComponent implements OnInit {
       }
     });
     this.losDatosConFechaConvertida = JSON.parse(algo);
+  }
+
+  home(){
+    this.datosService.getDatos()
+      .subscribe(
+        (data) => {
+          const datos: string | any[][] = data;
+          this.datosLeidos = datos.length;
+          this.convertirFecha(datos);
+          this.rowData = this.losDatosConFechaConvertida;
+        }
+      );
+    const total = this.datosService.getTotal()
+      .subscribe(
+        (data) => {
+          this.datosTotales = data.data;
+        })
   }
 }
