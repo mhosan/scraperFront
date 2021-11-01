@@ -4,7 +4,7 @@
     </div>
     <div class="row mt-2">
         <div class="col">
-            <ag-grid-angular style="width:840px; height: 500px;" class="ag-theme-material" [rowData]="rowData"
+            <ag-grid-angular style="width:840px; height: 500px;" class="ag-theme-bootstrap" [rowData]="rowData"
                 [columnDefs]="columnDefs" [rowSelection]="rowSelection" (selectionChanged)="onSelectionChanged($event)"
                 (gridReady)="onGridReady($event)">
             </ag-grid-angular>
@@ -32,7 +32,7 @@
                         <li><button class="btn btn-secondary btn-xs mt-1"
                                 (click)="filtroProducto('Pollo')">Pollo</button></li>
                         <li>
-                            <button class="btn btn-secondary btn-xs mt-3" (click)="home()">Home</button>
+                            <button class="btn btn-primary btn-xs mt-3" (click)="home()">Home</button>
                         </li>
 
                     </ul>

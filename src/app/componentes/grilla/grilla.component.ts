@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { AgGridColumn } from 'ag-grid-angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { AgGridAngular } from 'ag-grid-angular';
+import { ColDef } from 'ag-grid-community';
 import { DatosService } from '../../servicios/datos.service';
 //import 'rxjs/add/operator/catch';
+
 
 @Component({
   selector: 'app-grilla',
@@ -9,12 +11,14 @@ import { DatosService } from '../../servicios/datos.service';
   styleUrls: ['./grilla.component.css']
 })
 export class GrillaComponent implements OnInit {
+  @ViewChild('agGrid') agGrid!: AgGridAngular;
   public gridApi: any;
   public gridColumnApi: any;
   public gridOptions: any;
   public rowData: any;
   public rowSelection: any;
-  public columnDefs: any;
+  public columnDefs: ColDef[]=[];
+  private defaultColDef;
   public datosLeidos: number = 0;
   public datosTotales: number = 0;
   public losDatosConFechaConvertida: any;
@@ -28,7 +32,14 @@ export class GrillaComponent implements OnInit {
       { headerName: 'Descrip.', field: 'descrip', width: 475, sortable: true, filter: true, headerClass: 'miClase' },
       { headerName: 'Precio', field: 'precio', width: 110, sortable: true, headerClass: 'miClase' }
     ];
+
     this.rowSelection = 'single';
+    /* this.defaultColDef = {
+      flex: 1,
+      minWidth: 110,
+      editable: true,
+      resizable: true,
+    }; */
   }
 
   filtroProducto(producto: string) {
@@ -41,10 +52,12 @@ export class GrillaComponent implements OnInit {
         })
   }
 
-  onSelectionChanged(parametro: any) {
+  onSelectionChanged(event: any) {
+    //.................................................................
     //let selectedNodes = this.gridApi.getSelectedNodes();
-    //let selectedData = selectedNodes.map(node => node.data);
-    // alert(`Nodo seleccionado:\n${JSON.stringify(selectedData)}`); 
+    //let selectedData = selectedNodes.map((node: { data: any; }) => node.data);
+    //console.log(`Nodo seleccionado:\n${JSON.stringify(selectedData)}`);
+    //................................................................. 
     let selectedRows = this.gridApi.getSelectedRows();
     let seleccion = selectedRows[0].descrip;
     console.log(seleccion);
