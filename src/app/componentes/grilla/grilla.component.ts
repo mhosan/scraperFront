@@ -20,12 +20,12 @@ export class GrillaComponent implements OnInit {
   public losDatosConFechaConvertida: any;
 
   constructor(private datosService: DatosService) { }
-
+  
   ngOnInit(): void {
     this.columnDefs = [
-      { headerName: 'Superm.', field: 'supermercado', width: 130, sortable: true, filter: true, headerClass: 'miClase'},
+      { headerName: 'Superm.', field: 'supermercado', width: 110, sortable: true, filter: true, headerClass: 'miClase'},
       { headerName: 'Fecha', field: 'fecha', width: 120, sortable: true, filter: true, headerClass: 'miClase' },
-      { headerName: 'Descrip.', field: 'descrip', width: 530, sortable: true, filter: true, headerClass: 'miClase' },
+      { headerName: 'Descrip.', field: 'descrip', width: 475, sortable: true, filter: true, headerClass: 'miClase' },
       { headerName: 'Precio', field: 'precio', width: 110, sortable: true, headerClass: 'miClase' }
     ];
     this.rowSelection = 'single';

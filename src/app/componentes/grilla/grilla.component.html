@@ -1,43 +1,40 @@
 <div class="container-fluid">
+    <div class="row text-center">
+        <h4>{{datosLeidos}} productos sobre un total de {{datosTotales}}</h4>
+    </div>
     <div class="row mt-2">
-        <div class="col-1 mt-4">
-            <button class="btn btn-secondary btn-sm" (click)="home()">Home</button>
-        </div>
         <div class="col">
-            <ag-grid-angular style="width:920px; height: 600px;"
-             class="ag-theme-material"
-             [rowData]="rowData"
-             [columnDefs]="columnDefs"
-             [rowSelection]="rowSelection"
-             (selectionChanged)="onSelectionChanged($event)"
-             (gridReady)="onGridReady($event)">
+            <ag-grid-angular style="width:840px; height: 500px;" class="ag-theme-material" [rowData]="rowData"
+                [columnDefs]="columnDefs" [rowSelection]="rowSelection" (selectionChanged)="onSelectionChanged($event)"
+                (gridReady)="onGridReady($event)">
             </ag-grid-angular>
         </div>
         <div class="col mt-3">
-            <div>
-                <h4>{{datosLeidos}} productos sobre un total de {{datosTotales}}</h4>
-            </div>
             <div class="card" style="width: 10rem;">
                 <!-- <img src="..." class="card-img-top" alt="..."> -->
                 <div class="card-body">
                     <h5 class="card-title">Filtrar por producto</h5>
-                    <ul class="card-text">
-                        <li><button class="btn btn-secondary btn-sm" (click)="filtroProducto('Leche')">Leche</button>
-                        </li>
-                        <li><button class="btn btn-secondary btn-sm mt-1"
+                    <ul class="card-text list-unstyled">
+                        <li><button class="btn btn-secondary btn-xs" data-toggle="button"
+                                (click)="filtroProducto('Leche')">Leche</button></li>
+                        <li><button class="btn btn-secondary btn-xs mt-1"
                                 (click)="filtroProducto('Yerba')">Yerba</button></li>
-                        <li><button class="btn btn-secondary btn-sm mt-1"
+                        <li><button class="btn btn-secondary btn-xs mt-1"
                                 (click)="filtroProducto('Azucar')">Azucar</button></li>
-                        <li><button class="btn btn-secondary btn-sm mt-1"
+                        <li><button class="btn btn-secondary btn-xs mt-1"
                                 (click)="filtroProducto('Galletitas')">Galletitas</button></li>
-                        <li><button class="btn btn-secondary btn-sm mt-1"
+                        <li><button class="btn btn-secondary btn-xs mt-1"
                                 (click)="filtroProducto('Gaseosa')">Gaseosas</button></li>
-                        <li><button class="btn btn-secondary btn-sm mt-1"
+                        <li><button class="btn btn-secondary btn-xs mt-1"
                                 (click)="filtroProducto('Arroz')">Arroz</button></li>
-                        <li><button class="btn btn-secondary btn-sm mt-1"
+                        <li><button class="btn btn-secondary btn-xs mt-1"
                                 (click)="filtroProducto('Shampoo')">Shampoo</button></li>
-                        <li><button class="btn btn-secondary btn-sm mt-1"
+                        <li><button class="btn btn-secondary btn-xs mt-1"
                                 (click)="filtroProducto('Pollo')">Pollo</button></li>
+                        <li>
+                            <button class="btn btn-secondary btn-xs mt-3" (click)="home()">Home</button>
+                        </li>
+
                     </ul>
                     <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                 </div>

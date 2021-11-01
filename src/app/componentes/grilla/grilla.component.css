@@ -1,5 +1,13 @@
+/*::ng-deep, >>>vista de encapsulación para desactivar las reglas CSS específicas, en otras palabras, que le da acceso
+a los elementos DOM, que no están en el HTML de su componente. Por ejemplo, si está usando Angular Material
+(o cualquier otra biblioteca de terceros como esta), algunos elementos generados están fuera del área de su 
+componente (como el diálogo ) y no puede acceder a esos elementos directamente o usando un CSS normal. 
+Si desea cambiar los estilos de esos elementos, puede usar una de esas tres cosas, por ejemplo:
+::ng-deep .mat-dialog {
+  /* styles here */
+/*}*/
 ::ng-deep .miClase {
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight:bolder;
     /* font-size:medium; */
 }
