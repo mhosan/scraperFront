@@ -11,4 +11,15 @@ Si desea cambiar los estilos de esos elementos, puede usar una de esas tres cosa
     font-weight:bolder;
     /* font-size:medium; */
 }
+.pieTabla {
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 8px;
+  color: rgb(102, 95, 95);
+  padding-left: 12px;
+  padding-top: 3.5px;
+  padding-bottom: 3px;
+  width: 840px;
+  height: 40px;
+}
 

@@ -17,17 +17,19 @@ export class GrillaComponent implements OnInit {
   public gridOptions: any;
   public rowData: any;
   public rowSelection: any;
-  public columnDefs: ColDef[]=[];
+  public columnDefs: ColDef[] = [];
   private defaultColDef;
   public datosLeidos: number = 0;
   public datosTotales: number = 0;
   public losDatosConFechaConvertida: any;
+  public seleccion: string;
+  public filtrarChecked: boolean;
 
   constructor(private datosService: DatosService) { }
-  
+
   ngOnInit(): void {
     this.columnDefs = [
-      { headerName: 'Superm.', field: 'supermercado', width: 110, sortable: true, filter: true, headerClass: 'miClase'},
+      { headerName: 'Superm.', field: 'supermercado', width: 110, sortable: true, filter: true, headerClass: 'miClase' },
       { headerName: 'Fecha', field: 'fecha', width: 120, sortable: true, filter: true, headerClass: 'miClase' },
       { headerName: 'Descrip.', field: 'descrip', width: 475, sortable: true, filter: true, headerClass: 'miClase' },
       { headerName: 'Precio', field: 'precio', width: 110, sortable: true, headerClass: 'miClase' }
@@ -60,8 +62,9 @@ export class GrillaComponent implements OnInit {
     //................................................................. 
     let selectedRows = this.gridApi.getSelectedRows();
     let seleccion = selectedRows[0].descrip;
-    console.log(seleccion);
-    this.filtroProducto(seleccion);
+    //console.log(seleccion);
+    this.seleccion = seleccion;
+    //this.filtroProducto(seleccion);
   }
 
   onGridReady(params: { api: any; columnApi: any; }) {
@@ -89,7 +92,7 @@ export class GrillaComponent implements OnInit {
 
   }
 
-  convertirFecha(data: any){
+  convertirFecha(data: any) {
     const algo = JSON.stringify(data, (key, value) => {
       if (key == "fecha") {
         const f = new Date(value);
@@ -101,7 +104,8 @@ export class GrillaComponent implements OnInit {
     this.losDatosConFechaConvertida = JSON.parse(algo);
   }
 
-  home(){
+  home() {
+    this.filtrarChecked = false;
     this.datosService.getDatos()
       .subscribe(
         (data) => {
@@ -116,5 +120,26 @@ export class GrillaComponent implements OnInit {
         (data) => {
           this.datosTotales = data.data;
         })
+    this.seleccion = '';
+    
+  }
+
+  filtrar(event) {
+    //console.log(event.target['checked']);
+    if (this.seleccion != undefined) {
+      this.filtroProducto(this.seleccion);
+      this.filtrarChecked = false;
+      this.seleccion = '';
+    } else {
+      alert("Seleccionar item para filtrar");
+      this.filtrarChecked = false;
+  }
+
+  }
+  editar() {
+    console.log("editar");
+  }
+  borrar() {
+    console.log("borrar");
   }
 }

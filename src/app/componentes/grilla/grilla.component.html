@@ -4,7 +4,7 @@
     </div>
     <div class="row mt-2">
         <div class="col">
-            <ag-grid-angular style="width:840px; height: 500px;" class="ag-theme-bootstrap" [rowData]="rowData"
+            <ag-grid-angular style="width:840px; height: 450px;" class="ag-theme-bootstrap" [rowData]="rowData"
                 [columnDefs]="columnDefs" [rowSelection]="rowSelection" (selectionChanged)="onSelectionChanged($event)"
                 (gridReady)="onGridReady($event)">
             </ag-grid-angular>
@@ -39,6 +39,32 @@
                     <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row pieTabla mt-2">
+        <div class="col-6">
+            {{seleccion}}
+        </div>
+        <div class="col form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                (change)="filtrar($event)" [checked]="filtrarChecked">
+            <label class="form-check-label" for="flexRadioDefault1">
+                Filtrar
+            </label>
+        </div>
+        <div class="col form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                (click)="editar()">
+            <label class="form-check-label" for="flexRadioDefault2">
+                Editar
+            </label>
+        </div>
+        <div class="col form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"
+                (click)="borrar()">
+            <label class="form-check-label" for="flexRadioDefault3">
+                Borrar
+            </label>
         </div>
     </div>
 </div>
