@@ -52,6 +52,8 @@ export class GrillaComponent implements OnInit {
           this.rowData = this.losDatosConFechaConvertida;
           this.datosLeidos = data.data.length;
         })
+    this.seleccion = '';
+    this.filtrarChecked = false;
   }
 
   onSelectionChanged(event: any) {
@@ -124,18 +126,9 @@ export class GrillaComponent implements OnInit {
   }
 
   filtrar() {
-    alert(this.seleccion);
-    //console.log(event.target['checked']);
-    if (this.seleccion != '') {
-      this.filtrarChecked = true;
-      this.filtroProducto(this.seleccion);
-    } else {
-      alert("Seleccionar item para filtrar");
-      this.filtrarChecked = false;
-    }
+    this.filtrarChecked = true;
+    this.filtroProducto(this.seleccion);
   }
-
-
   editar() {
     console.log("editar");
   }
