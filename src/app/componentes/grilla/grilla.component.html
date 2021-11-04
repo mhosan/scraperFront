@@ -1,10 +1,10 @@
 <div class="container-fluid">
     <div class="row text-center">
         <h4>{{datosLeidos}} productos sobre un total de {{datosTotales}}</h4>
-        <div class="alert alert-primary alert-dismissible fade show" role="alert" *ngIf="mostrarAlert">
+        <!-- <div class="alert alert-primary alert-dismissible fade show" role="alert" *ngIf="mostrarAlert">
             Opción no disponible aún...
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+        </div> -->
     </div>
     <div class="row mt-2">
         <div class="col">
@@ -60,7 +60,7 @@
 
         <div class="col form-check" *ngIf="seleccion !=''">
             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
-                (click)="editar()">
+                (click)="editar()" disabled >
             <label class="form-check-label" for="flexRadioDefault2">
                 Editar
             </label>
@@ -68,7 +68,7 @@
 
         <div class="col form-check" *ngIf="seleccion !=''">
             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"
-                (click)="borrar()">
+                (click)="borrar()" disabled>
             <label class="form-check-label" for="flexRadioDefault3">
                 Borrar
             </label>
