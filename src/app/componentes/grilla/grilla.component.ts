@@ -24,6 +24,7 @@ export class GrillaComponent implements OnInit {
   public losDatosConFechaConvertida: any;
   public seleccion: string = '';
   public filtrarChecked: boolean;
+  public mostrarAlert: boolean = false;
 
   constructor(private datosService: DatosService) { }
 
@@ -130,9 +131,9 @@ export class GrillaComponent implements OnInit {
     this.filtroProducto(this.seleccion);
   }
   editar() {
-    console.log("editar");
+    this.mostrarAlert = true;
   }
   borrar() {
-    console.log("borrar");
+    this.mostrarAlert = true;
   }
 }
