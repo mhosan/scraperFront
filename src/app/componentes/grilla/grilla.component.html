@@ -1,44 +1,70 @@
-<div class="container">
-    <div class="row">
+<div class="container-fluid">
+    <div class="row text-center">
+        <h4>{{datosLeidos}} productos sobre un total de {{datosTotales}}</h4>
+    </div>
+    <div class="row mt-2">
         <div class="col">
-            <ag-grid-angular style="width:875px; height: 500px;"
-             class="ag-theme-fresh"
-             [rowData]="rowData"
-             [columnDefs]="columnDefs"
-             [rowSelection]="rowSelection"
-             (selectionChanged)="onSelectionChanged($event)"
-             (gridReady)="onGridReady($event)">
+            <ag-grid-angular style="width:840px; height: 450px;" class="ag-theme-bootstrap" [rowData]="rowData"
+                [columnDefs]="columnDefs" [rowSelection]="rowSelection" (selectionChanged)="onSelectionChanged($event)"
+                (gridReady)="onGridReady($event)">
             </ag-grid-angular>
         </div>
-        <div class="col">
-            <div>
-                <h4>{{datosLeidos}} productos sobre un total de {{datosTotales}}</h4>
-            </div>
+        <div class="col mt-3">
             <div class="card" style="width: 10rem;">
                 <!-- <img src="..." class="card-img-top" alt="..."> -->
                 <div class="card-body">
-                    <h5 class="card-title">Productos scrapeados</h5>
-                    <ul class="card-text">
-                        <li><button class="btn btn-secondary btn-sm" (click)="filtroProducto('Leche')">Leche</button>
-                        </li>
-                        <li><button class="btn btn-secondary btn-sm mt-1"
+                    <h5 class="card-title">Filtrar por producto</h5>
+                    <ul class="card-text list-unstyled">
+                        <li><button class="btn btn-secondary btn-xs" data-toggle="button"
+                                (click)="filtroProducto('Leche')">Leche</button></li>
+                        <li><button class="btn btn-secondary btn-xs mt-1"
                                 (click)="filtroProducto('Yerba')">Yerba</button></li>
-                        <li><button class="btn btn-secondary btn-sm mt-1"
+                        <li><button class="btn btn-secondary btn-xs mt-1"
                                 (click)="filtroProducto('Azucar')">Azucar</button></li>
-                        <li><button class="btn btn-secondary btn-sm mt-1"
+                        <li><button class="btn btn-secondary btn-xs mt-1"
                                 (click)="filtroProducto('Galletitas')">Galletitas</button></li>
-                        <li><button class="btn btn-secondary btn-sm mt-1"
+                        <li><button class="btn btn-secondary btn-xs mt-1"
                                 (click)="filtroProducto('Gaseosa')">Gaseosas</button></li>
-                        <li><button class="btn btn-secondary btn-sm mt-1"
+                        <li><button class="btn btn-secondary btn-xs mt-1"
                                 (click)="filtroProducto('Arroz')">Arroz</button></li>
-                        <li><button class="btn btn-secondary btn-sm mt-1"
+                        <li><button class="btn btn-secondary btn-xs mt-1"
                                 (click)="filtroProducto('Shampoo')">Shampoo</button></li>
-                        <li><button class="btn btn-secondary btn-sm mt-1"
+                        <li><button class="btn btn-secondary btn-xs mt-1"
                                 (click)="filtroProducto('Pollo')">Pollo</button></li>
+                        <li>
+                            <button class="btn btn-primary btn-xs mt-3" (click)="home()">Home</button>
+                        </li>
+
                     </ul>
                     <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row pieTabla mt-2">
+        <div class="col-6">
+            {{seleccion}}
+        </div>
+        <div class="col form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                (click)="filtrar()" [checked]="filtrarChecked">
+            <label class="form-check-label" for="flexRadioDefault1">
+                Filtrar
+            </label>
+        </div>
+        <div class="col form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                (click)="editar()">
+            <label class="form-check-label" for="flexRadioDefault2">
+                Editar
+            </label>
+        </div>
+        <div class="col form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"
+                (click)="borrar()">
+            <label class="form-check-label" for="flexRadioDefault3">
+                Borrar
+            </label>
         </div>
     </div>
 </div>
