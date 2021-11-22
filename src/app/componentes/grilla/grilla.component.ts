@@ -24,6 +24,8 @@ export class GrillaComponent implements OnInit {
   public losDatosConFechaConvertida: any;
   public seleccion: string = '';
   public variacion: number = 0;
+  public productoVariacion = '';
+  public arrayPrecios: number[] = [];
   public filtrarChecked: boolean;
   public mostrarAlert: boolean = false;
 
@@ -148,7 +150,12 @@ export class GrillaComponent implements OnInit {
       .subscribe(
         (data) => {
           this.variacion = data.data.length;
-          //let producto = data.data[0]._id.descripcion;
+          this.productoVariacion = data.data[0]._id.descripcion;
+          this.arrayPrecios = [];
+          for (let i = 0; i < data.data.length; i++) {
+            this.arrayPrecios.push(data.data[i]._id.precio);
+          }
+          //console.log(this.arrayPrecios);
         })
   }
 }

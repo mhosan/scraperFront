@@ -59,10 +59,16 @@
                 <!-- <img src="..." class="card-img-top" alt="..."> -->
                 <div class="card-body">
                     <h5 class="card-title">Variaciones de precios</h5>
-                    <div  *ngIf="seleccion !=''"> 
+                    <!-- <div  *ngIf="seleccion !=''">  -->
+                    <div> 
                         <!-- <button class="btn btn-primary btn-sm" (click)="variaciones()">Buscar...</button> -->
-                        <p *ngIf="variacion == 1">El producto {{seleccion}} NO tuvo variaciones de precio.</p>
-                        <p *ngIf="variacion > 1">El producto {{seleccion}}, tuvo {{variacion}} variaciones de precio.</p>
+                        <p *ngIf="variacion == 1">El producto {{productoVariacion}} NO tuvo variaciones de precio.</p>
+                        <p *ngIf="variacion > 1">El producto {{productoVariacion}}, tuvo {{variacion}} variaciones de precio.</p>
+                        <ul>
+                            <li *ngFor="let precio of arrayPrecios">
+                                {{precio}}
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
