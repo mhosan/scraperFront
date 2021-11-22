@@ -23,6 +23,7 @@ export class GrillaComponent implements OnInit {
   public datosTotales: number = 0;
   public losDatosConFechaConvertida: any;
   public seleccion: string = '';
+  public variacion: number = 0;
   public filtrarChecked: boolean;
   public mostrarAlert: boolean = false;
 
@@ -68,6 +69,8 @@ export class GrillaComponent implements OnInit {
     //console.log(seleccion);
     this.seleccion = seleccion;
     //this.filtroProducto(seleccion);
+    //this.variacion = 0;
+    this.variaciones();
   }
 
   onGridReady(params: { api: any; columnApi: any; }) {
@@ -130,6 +133,9 @@ export class GrillaComponent implements OnInit {
     this.filtrarChecked = true;
     this.filtroProducto(this.seleccion);
   }
+  variacionUnProducto() {
+    alert(this.seleccion);
+  }
   editar() {
     this.mostrarAlert = true;
   }
@@ -137,19 +143,12 @@ export class GrillaComponent implements OnInit {
     this.mostrarAlert = true;
   }
 
-  variaciones(producto: string) {
-    this.datosService.getVariaciones(producto)
+  variaciones() {
+    this.datosService.getVariaciones(this.seleccion)
       .subscribe(
         (data) => {
-          //let resultado = JSON.stringify(data);
-          //console.log(`data.status: ${data.status}'\n'data.message: ${data.message}'\n'cantidad de variaciones de precio para este producto: ${data.data.length}'\n'`);
-          //console.log(`el primer elemento: ${data.data[0]._id.descripcion}`);
-          //console.log(`precio: ${data.data[0]._id.precio}`)
-          //console.log(`el segundo elemento: ${data.data[1]._id.descripcion}`);
-          //console.log(`precio: ${data.data[1]._id.precio}`)
-          
-          console.log(`El producto ${data.data[0]._id.descripcion} tuvo ${data.data.length} variaciones de precio desde el 14/10.`);
-          console.log(`$${data.data[0]._id.precio} y $${data.data[1]._id.precio}`);
+          this.variacion = data.data.length;
+          //let producto = data.data[0]._id.descripcion;
         })
   }
 }

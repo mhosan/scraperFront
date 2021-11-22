@@ -59,7 +59,11 @@
                 <!-- <img src="..." class="card-img-top" alt="..."> -->
                 <div class="card-body">
                     <h5 class="card-title">Variaciones de precios</h5>
-                        <button class="btn btn-primary btn-sm" (click)="variaciones('Yerba Mate Playadito Suave 1 Kg.')">Buscar...</button>
+                    <div  *ngIf="seleccion !=''"> 
+                        <!-- <button class="btn btn-primary btn-sm" (click)="variaciones()">Buscar...</button> -->
+                        <p *ngIf="variacion == 1">El producto {{seleccion}} NO tuvo variaciones de precio.</p>
+                        <p *ngIf="variacion > 1">El producto {{seleccion}}, tuvo {{variacion}} variaciones de precio.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -95,7 +99,7 @@
                                 Filtrar
                             </label>
                         </div>
-
+                        
                         <div class="col form-check" *ngIf="seleccion !=''">
                             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
                                 (click)="editar()" disabled>
