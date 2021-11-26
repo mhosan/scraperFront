@@ -7,6 +7,7 @@ import { GrillaComponent } from './componentes/grilla/grilla.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { HeaderComponent } from './componentes/header/header.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HeaderComponent } from './componentes/header/header.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([]),
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
