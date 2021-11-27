@@ -62,13 +62,14 @@
                     <!-- <div  *ngIf="seleccion !=''">  -->
                     <div> 
                         <!-- <button class="btn btn-primary btn-sm" (click)="variaciones()">Buscar...</button> -->
-                        <p *ngIf="variacion == 1">El producto {{productoVariacion}} NO tuvo variaciones de precio desde el 14/10/21.</p>
-                        <p *ngIf="variacion > 1">El producto {{productoVariacion}}, tuvo {{variacion}} variaciones de precio desde el 14/10/21.</p>
-                        <ul>
+                        <p *ngIf="variacion == 1">{{productoVariacion}} <b>NO</b> tuvo variaciones de precio desde el 14/10/21.</p>
+                        <p *ngIf="variacion > 1">{{productoVariacion}}, <b>tuvo {{variacion}}</b> variaciones de precio desde el 14/10/21.
+                        <br><br><em>Click en "Filtrar", debajo de la grilla, para ver las variaciones de precio</em></p>
+                        <!-- <ul>
                             <li *ngFor="let precio of arrayPrecios">
                                 ${{precio}}
                             </li>
-                        </ul>
+                        </ul> -->
                     </div>
                 </div>
             </div>
