@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { OptionsForm } from '@auth/form/form.component';
 
 @Component({
   selector: 'app-sign-up',
-  templateUrl: './sign-up.component.html',
+  template: `<app-form [options]="options"></app-form>`,
   styleUrls: ['./sign-up.component.css']
 })
-export class SignUpComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+export class SignUpComponent  {
+  options: OptionsForm = {
+    id: 'sign-up',
+    label: 'Sign up',
   }
-
+  
 }
